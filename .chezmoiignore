@@ -1,0 +1,7 @@
+README.md
+{{ if ne .chezmoi.os "darwin" }}
+    .startup-mac.sh
+    .zshrc
+    .p10k
+    ./config/borders
+{{ end }}

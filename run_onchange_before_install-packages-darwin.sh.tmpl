@@ -1,0 +1,96 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --file=/dev/stdin <<EOF
+tap "1password/tap"
+tap "dracula/install"
+tap "felixkratz/formulae"
+tap "homebrew/core"
+brew "atuin", restart_service: :changed
+brew "automake"
+brew "libyaml"
+brew "openssl@3"
+brew "azure-cli"
+brew "btop"
+brew "coreutils"
+brew "cask"
+brew "checkov"
+brew "chezmoi"
+brew "cmake"
+brew "curl", link: true
+brew "fzf"
+brew "gh"
+brew "git"
+brew "git-flow"
+brew "gnupg"
+brew "lazygit"
+brew "libtool"
+brew "maclaunch"
+brew "mas"
+brew "minizip"
+brew "mise"
+brew "mkcert"
+brew "mosh"
+brew "neovim"
+brew "nmap"
+brew "node"
+brew "nss"
+brew "ollama"
+brew "pkgconf"
+brew "python@3.9"
+brew "rbenv"
+brew "superfile"
+brew "testssl"
+brew "tfsec"
+brew "trivy"
+brew "wget"
+brew "xcbeautify"
+brew "xcodes"
+brew "yazi"
+brew "zlib"
+brew "zoxide"
+brew "zsh"
+brew "felixkratz/formulae/borders"
+cask "1password-cli"
+cask "betterdisplay"
+cask "devtoys"
+cask "dracula-xcode"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono"
+cask "ghostty"
+cask "imageoptim"
+cask "jordanbaird-ice"
+cask "knockknock"
+cask "meetingbar"
+cask "pearcleaner"
+cask "sf-symbols"
+cask "utm"
+cask "xcodes-app"
+mas "1Password for Safari", id: 1569813296
+mas "AdGuard for Safari", id: 1440147259
+mas "Color Picker", id: 1545870783
+mas "DevCleaner", id: 1388020431
+mas "Developer", id: 640199958
+mas "Dropover", id: 1355679052
+mas "Gifski", id: 1351639930
+mas "Grocery", id: 1195676848
+mas "Home Assistant", id: 1099568401
+mas "Hyperduck", id: 6444667067
+mas "Klack", id: 6446206067
+mas "Messenger", id: 1480068668
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft Word", id: 462054704
+mas "Numbers", id: 409203825
+mas "Obsidian Web Clipper", id: 6720708363
+mas "Online Check", id: 6504709660
+mas "Scratchpad", id: 6504040051
+mas "Slack", id: 803453959
+mas "Speediness", id: 1596706466
+mas "Tailscale", id: 1475387142
+mas "TestFlight", id: 899247664
+mas "Things", id: 904280696
+mas "Velja", id: 1607635845
+mas "Xcode", id: 497799835
+EOF
+{{ end -}}

@@ -1,0 +1,84 @@
+[user]
+	name = Anders Fogh Eriksen
+	email = {{ .email | quote }}
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtKK3azOc78X+Oruk8ERha2n9BUEO0Bzj0YDuLfsjx7
+
+[alias]
+	contributors = shortlog --summary --numbered
+  	zip = archive --format zip --output latest.zip HEAD
+	tags = tag -l
+	amend = commit --amend
+	count = rev-list HEAD --count
+	branches = branch -a
+	remotes = remote -v
+
+[push]
+	followTags = true
+	autoSetupRemote = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[help]
+	autocorrect = prompt
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/Fogh/.gitignore_global
+	editor = code -n --wait
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[tag]
+	sort = version:refname
