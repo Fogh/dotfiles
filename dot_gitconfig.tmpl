@@ -80,6 +80,8 @@
 [gpg "ssh"]
 {{- if eq .chezmoi.os "darwin" }}
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{- else if eq .chezmoi.os "windows" }}
+	program = "C:/Program Files/1Password/app/8/op-ssh-sign.exe"
 {{- end }}
 [init]
 	defaultBranch = main
