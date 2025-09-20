@@ -2,6 +2,10 @@ README.md
 {{ if ne .chezmoi.os "darwin" }}
     .startup-mac.sh
     .zshrc
-    .p10k
-    ./config/borders
+    .p10k.zsh
+    ./config/borders/*
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+.glzr/*
 {{ end }}
