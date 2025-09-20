@@ -63,7 +63,7 @@
 	helper = wincred
 {{ end }}
 [core]
-	excludesfile = /Users/Fogh/.gitignore_global
+	excludesfile = {{ .chezmoi.homeDir }}/.gitignore
 	editor = code -n --wait
 {{- if eq .chezmoi.os "windows" }}
 	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
