@@ -57,10 +57,17 @@
 [mergetool]
 	prompt = false
 [credential]
+{{ if eq .chezmoi.os "darwin" }}
 	helper = osxkeychain
+{{ else if eq .chezmoi.os "windows" }}
+	helper = wincred
+{{ end }}
 [core]
 	excludesfile = /Users/Fogh/.gitignore_global
 	editor = code -n --wait
+	{{ if eq .chezmoi.os "windows" }}
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+	{{ end }}
 [commit]
 	gpgsign = true
 [gpg]
@@ -71,7 +78,9 @@
 	required = true
 	clean = git-lfs clean -- %f
 [gpg "ssh"]
+{{ if eq .chezmoi.os "darwin" }}
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{ end }}
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
