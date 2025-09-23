@@ -1,7 +1,9 @@
 {{ $email := promptStringOnce . "email" "What is your email address?" -}}
+{{ $isServer := promptBoolOnce . "isServer" "Is this a server?" -}}
 
 data:
     email: {{ $email | quote }}
+    isServer: {{ $isServer }}
 
 edit:
   command: "code"
