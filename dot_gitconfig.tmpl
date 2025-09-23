@@ -1,7 +1,9 @@
 [user]
 	name = Anders Fogh Eriksen
 	email = {{ .email | quote }}
+{{ if not .isServer -}}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtKK3azOc78X+Oruk8ERha2n9BUEO0Bzj0YDuLfsjx7
+{{ end -}}
 
 [alias]
 	contributors = shortlog --summary --numbered
@@ -82,7 +84,7 @@
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 {{- else if eq .chezmoi.os "windows" }}
 	program = "C:/Program Files/1Password/app/8/op-ssh-sign.exe"
-{{- else if eq .chezmoi.os "linux" }}
+{{- else if (and (eq .chezmoi.os "linux") (not .isServer)) -}}
   	program = {{ .chezmoi.homeDir }}/.local/bin/op-ssh-sign
 {{- end }}
 [init]
