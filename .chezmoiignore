@@ -3,7 +3,8 @@ README.md
     .startup-mac.sh
     .zshrc
     .p10k.zsh
-    ./config/borders/*
+    ./config/borders/
+    ./config/borders/**
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}

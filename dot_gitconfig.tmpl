@@ -1,3 +1,5 @@
+{{- $ghPath := lookPath "gh" }}
+
 [user]
 	name = Anders Fogh Eriksen
 	email = {{ .email | quote }}
@@ -89,8 +91,13 @@
 {{- end }}
 [init]
 	defaultBranch = main
-{{- $ghPath := lookPath "gh" }}
-{{- if $ghPath }}
+
+{{- if eq .chezmoi.os "windows" }}
+[credential "https://github.com"]
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+[credential "https://gist.github.com"]
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+{{- else if $ghPath }}
 [credential "https://github.com"]
 	helper = !{{ $ghPath }} auth git-credential
 [credential "https://gist.github.com"]
