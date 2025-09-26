@@ -64,7 +64,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 	helper = osxkeychain
 {{ else if eq .chezmoi.os "windows" }}
-	helper = wincred
+	helper = manager
 {{ end }}
 [core]
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore
