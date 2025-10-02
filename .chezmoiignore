@@ -1,13 +1,16 @@
 README.md
 key.txt.age
-{{ if ne .chezmoi.os "darwin" }}
-    .startup-mac.sh
-    .zshrc
-    .p10k.zsh
-    .config/borders/**
-    Library
-{{ end }}
+{{- if ne .chezmoi.os "darwin" }}
+.startup-mac.sh
+.zshrc
+.p10k.zsh
+.config/borders/**
+{{- end }}
 
-{{ if ne .chezmoi.os "windows" }}
+{{- if eq .chezmoi.os "windows" }}
+.hushlogin
+{{- end }}
+
+{{- if ne .chezmoi.os "windows" }}
 .glzr/*
-{{ end }}
+{{- end }}
