@@ -4,6 +4,7 @@ key.txt.age
 .startup-mac.sh
 .zshrc
 .p10k.zsh
+run_onchange_before_decrypt-private-key-darwin.sh
 .config/borders/**
 Library/
 {{- end }}
