@@ -7,3 +7,7 @@ command = "npx"
 args = ["-y", "xcodebuildmcp@latest"]
 env = { "INCREMENTAL_BUILDS_ENABLED" = "true", "XCODEBUILDMCP_SENTRY_DISABLED" = "true" }
 {{ end }}
+
+[mcp_servers.context7]
+args = ["-y", "@upstash/context7-mcp"]
+command = "npx"
