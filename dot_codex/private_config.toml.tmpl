@@ -4,6 +4,9 @@ trust_level = "trusted"
 [tools]
 web_search = true
 
+[tui]
+notifications = true
+
 {{ if eq .chezmoi.os "darwin" }}
 [mcp_servers.XcodeBuildMCP]
 command = "npx"
