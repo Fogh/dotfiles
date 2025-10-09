@@ -8,6 +8,9 @@ web_search = true
 notifications = true
 
 {{ if eq .chezmoi.os "darwin" }}
+
+notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
 [mcp_servers.XcodeBuildMCP]
 command = "npx"
 args = ["-y", "xcodebuildmcp@latest"]
