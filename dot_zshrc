@@ -111,6 +111,7 @@ export HOMEBREW_NO_ANALYTICS=1
 # Example aliases
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
+alias gpr="gh pr checkout"
 
 alias la='ls -lah'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
