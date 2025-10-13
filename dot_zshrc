@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/fogh/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -84,7 +84,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#767676"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git dotenv macos sudo zsh-autosuggestions fzf-tab fast-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -115,13 +115,22 @@ alias ohmyzsh="code ~/.oh-my-zsh"
 alias la='ls -lah'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
-. ~/.fastlane/completions/completion.sh
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+[ -f "$HOME/.fastlane/completions/completion.sh" ] && . "$HOME/.fastlane/completions/completion.sh"
+
+if command -v brew >/dev/null 2>&1; then
+  python_libexec="$(brew --prefix python@3.9 2>/dev/null)/libexec/bin"
+  if [ -d "$python_libexec" ]; then
+    export PATH="$python_libexec:$PATH"
+  fi
+fi
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
-source ~/.config/op/plugins.sh
+[ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
-eval "$(op completion zsh)"; compdef _op op
+if command -v op >/dev/null 2>&1; then
+  eval "$(op completion zsh)"
+  compdef _op op
+fi
 eval "$(rbenv init - zsh)"
 export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
 
@@ -152,6 +161,5 @@ eval "$(atuin init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/fogh/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
-
