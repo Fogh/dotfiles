@@ -1,5 +1,4 @@
-README.md
-AGENTS.md
+*.md
 key.txt.age
 {{- if ne .chezmoi.os "darwin" }}
 .startup-mac.sh
