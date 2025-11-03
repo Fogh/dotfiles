@@ -2,7 +2,7 @@
 trust_level = "trusted"
 
 [tools]
-web_search = true
+web_search_request = true
 
 [tui]
 notifications = true
@@ -15,6 +15,7 @@ notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
 command = "npx"
 args = ["-y", "xcodebuildmcp@latest"]
 env = { "INCREMENTAL_BUILDS_ENABLED" = "true", "XCODEBUILDMCP_SENTRY_DISABLED" = "true" }
+startup_timeout_sec = 20
 {{ end }}
 
 [mcp_servers.context7]
