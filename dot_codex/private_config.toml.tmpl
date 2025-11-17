@@ -7,6 +7,9 @@ web_search_request = true
 [tui]
 notifications = true
 
+[notice]
+hide_gpt5_1_migration_prompt = true
+
 {{ if eq .chezmoi.os "darwin" }}
 
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
