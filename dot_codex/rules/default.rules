@@ -1,0 +1,24 @@
+# Default approval rules for Codex CLI
+# Rules format per https://developers.openai.com/codex/local-config#rules-preview
+
+prefix_rule(
+    pattern = ["gh", "pr", "view"],
+    decision = "allow",
+
+    match = [
+      "gh pr view 7888",
+      "gh pr view --repo openai/codex",
+      "gh pr view 7888 --json title,body,comments",
+    ],
+    not_match = [
+      # Does not match because the `pattern` must be an exact prefix.
+      "gh pr --repo openai/codex view 7888",
+    ],
+)
+prefix_rule(pattern=["git", "add"], decision="allow")
+
+prefix_rule(pattern=["git", "commit"], decision="allow")
+
+prefix_rule(pattern=["xcodebuild"], decision="allow")
+
+prefix_rule(pattern=["swift"], decision="allow")
