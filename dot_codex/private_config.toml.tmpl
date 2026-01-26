@@ -13,6 +13,8 @@ notifications = true
 [notice]
 hide_gpt5_1_migration_prompt = true
 
+collaboration_modes = true
+
 {{ if eq .chezmoi.os "darwin" }}
 
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
