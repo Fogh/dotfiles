@@ -1,24 +1,33 @@
 # Default approval rules for Codex CLI
 # Rules format per https://developers.openai.com/codex/local-config#rules-preview
 
-prefix_rule(
-    pattern = ["gh", "pr", "view"],
-    decision = "allow",
+prefix_rule(pattern=["gh", ["pr","issue","repo"], ["view","list"]], decision="allow",
+           justification="Read-only GitHub inspection is acceptable.")
 
-    match = [
-      "gh pr view 7888",
-      "gh pr view --repo openai/codex",
-      "gh pr view 7888 --json title,body,comments",
-    ],
-    not_match = [
-      # Does not match because the `pattern` must be an exact prefix.
-      "gh pr --repo openai/codex view 7888",
-    ],
-)
-prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["gh", "status"], decision="allow")
 
-prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", ["commit", "status", "add", "diff", "switch", "checkout", "restore", "log", "branch", "reset", "rev-parse","ls-files"]], justification="Local operations are acceptable." decision="allow")
+
+prefix_rule(pattern=["git", ["push","pull","fetch","clone","submodule"]], decision="prompt",
+           justification="Network/remote-changing git operations: prompt to confirm intent/target.")
+
+prefix_rule(pattern=["git", ["rebase","merge","cherry-pick","revert"]], decision="prompt",
+           justification="History-changing operations: prompt to confirm branch/strategy.")
 
 prefix_rule(pattern=["xcodebuild"], decision="allow")
 
+prefix_rule(pattern=["xcrun", "simctl", ["list","bootstatus","boot","shutdown","erase","install","uninstall","launch"]], decision="allow",
+           justification="Simulator management is acceptable.")
+
 prefix_rule(pattern=["swift"], decision="allow")
+
+prefix_rule(pattern=["ls", "cat", "find", "file", "sed", "pwd", "head", "tail", "md5", "diff", "grep", "rg"], decision="allow")
+
+prefix_rule(pattern=["codesign", "-dv"], decision="allow", justification="Read-only signature inspection.")
+prefix_rule(pattern=["plutil", "-p"], decision="allow", justification="Read-only plist view.")
+prefix_rule(pattern=["xcode-select", "-p"], decision="allow", justification="Read-only Xcode path.")
+
+prefix_rule(pattern=["brew", ["list","info","search","doctor","config"]], decision="allow",
+           justification="Mostly read-only Homebrew queries.")
+prefix_rule(pattern=["brew", ["install","upgrade","uninstall","tap","update"]], decision="prompt",
+           justification="Modifies system; prompt.")
