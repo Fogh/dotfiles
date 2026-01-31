@@ -6,7 +6,7 @@ prefix_rule(pattern=["gh", ["pr","issue","repo"], ["view","list"]], decision="al
 
 prefix_rule(pattern=["gh", "status"], decision="allow")
 
-prefix_rule(pattern=["git", ["commit", "status", "add", "diff", "switch", "checkout", "restore", "log", "branch", "reset", "rev-parse","ls-files"]], justification="Local operations are acceptable." decision="allow")
+prefix_rule(pattern=["git", ["commit", "status", "add", "diff", "switch", "checkout", "restore", "log", "branch", "reset", "rev-parse","ls-files"]], justification="Local operations are acceptable.", decision="allow")
 
 prefix_rule(pattern=["git", ["push","pull","fetch","clone","submodule"]], decision="prompt",
            justification="Network/remote-changing git operations: prompt to confirm intent/target.")
