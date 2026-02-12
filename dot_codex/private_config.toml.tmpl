@@ -9,6 +9,8 @@ notifications = true
 
 collaboration_modes = true
 
+status_line = ["five-hour-limit", "weekly-limit", "git-branch"]
+
 {{ if eq .chezmoi.os "darwin" }}
 
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
